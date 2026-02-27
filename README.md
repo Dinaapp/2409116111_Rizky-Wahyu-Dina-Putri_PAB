@@ -31,29 +31,90 @@ Admin dapat melihat daftar lengkap peserta per kegiatan (nama, email, nomor HP, 
 
 ## Widget
 ### Widget Struktur & Layout
-#### 1. ElevatedButton
-#### 2. OutlinedButton
-#### 3. FloatingActionButton.extended
-#### 4. GestureDetector
-#### 5. AlertDialog
-#### 6. SnackBar
-#### 7. Navigator.push
-#### 8. Navigator.pop
-#### 9. MaterialPageRoute
+#### 1. Scaffold
+Kerangka dasar halaman Flutter yang menyediakan AppBar, body, bottomNavigationBar, dan FloatingActionButton. Digunakan di semua screen untuk membentuk struktur utama halaman (home, detail, form, admin, peserta, register).
+#### 2. AppBar
+Bilah navigasi di bagian atas halaman yang berisi judul dan tombol aksi.
+Digunakan untuk menampilkan identitas halaman serta tombol navigasi (admin, tambah kegiatan, dll).
+#### 3. SliverAppBar + CustomScrollView
+AppBar yang dapat mengecil saat discroll. Digunakan di halaman detail kegiatan untuk efek banner collapse yang modern dan hemat ruang.
+#### 4. Column
+Menyusun widget secara vertikal (atas ke bawah).
+Digunakan untuk menyusun form, isi kartu, dan konten halaman.
+#### 5. Row
+Menyusun widget secara horizontal (kiri ke kanan). Digunakan untuk menampilkan ikon dan teks sejajar atau kartu statistik berdampingan.
+#### 6. Expanded
+Membuat widget mengisi sisa ruang dalam Row/Column. Digunakan untuk mengatur proporsi tombol dan kartu agar responsif.
+#### 7. Stack + Positioned
+Menumpuk widget seperti layer dan mengatur posisinya.
+Digunakan pada banner kartu kegiatan (badge kategori, status penuh, ikon, judul).
+#### 8. SingleChildScrollView
+Membuat konten bisa discroll jika melebihi layar. Digunakan pada halaman form dengan banyak input.
+#### 9. ListView.builder
+Membuat daftar scrollable secara efisien. Digunakan untuk menampilkan daftar kegiatan dan peserta.
 
 ### Widget Tampilan & Dekorasi
-#### 1. ChangeNotifierProvider
-#### 2. context.watch<AppProvider>()
-#### 3. context.read<AppProvider>()
-#### 4. StatefulWidget
-#### 5. StatelessWidget
-#### 6. setState()
+#### 1. Container
+Widget serbaguna untuk ukuran, warna, padding, border, dan bayangan.
+Digunakan sebagai pembungkus kartu dan kotak informasi.
+#### 2. BoxDecoration
+Mengatur dekorasi Container (gradient, border radius, shadow).
+Digunakan untuk membuat kartu dengan sudut melengkung dan efek bayangan.
+#### 3. LinearGradient
+Membuat latar belakang gradasi warna. Digunakan pada banner kategori kegiatan.
+#### 4. ClipRRect
+Memotong widget agar memiliki sudut melengkung. Digunakan pada banner kartu dan progress bar.
+#### 5. LinearProgressIndicator
+Progress bar horizontal (0.0–1.0). Digunakan untuk menampilkan jumlah slot peserta yang terisi.
+#### 6. CircularProgressIndicator
+Loading berbentuk lingkaran. Digunakan saat proses submit atau login berlangsung.
+#### 1. Icon
+Menampilkan ikon Material Design. Digunakan sebagai elemen visual kategori, informasi, dan aksi.
 
 ### Widget Teks & Input
+#### 1. TextFormField
+Input teks dengan validasi Form. Digunakan untuk input nama, email, WA, instansi, dan data kegiatan.
+#### 3. TextEditingController
+Mengontrol dan membaca nilai input.Digunakan untuk mengambil dan mengisi data form.
+#### 4. InputDecoration
+Mengatur tampilan TextFormField (hint, border, warna error). Memberikan feedback visual pada kondisi normal, fokus, dan error.
+#### 5. DropdownButtonFormField
+Dropdown terintegrasi dengan Form. Digunakan untuk memilih kategori kegiatan.
+#### 6. Form + GlobalKey<FormState>
+Mengelompokkan input dan menjalankan validasi sekaligus. Digunakan saat submit form register, login, dan tambah/edit kegiatan.
 ### Widget Interaksi & Navigasi
-### Widget State Management & Provider
-### Widget Date Picker & Localization
+#### 7. ElevatedButton
+Tombol utama dengan yang Digunakan untuk aksi penting seperti daftar dan simpan.
+#### 8. OutlinedButton
+Tombol dengan border tanpa background. Digunakan untuk aksi sekunder seperti tombol “Detail”.
+#### 9. TextButton
+Tombol sederhana berbasis teks. Digunakan pada dialog konfirmasi.
+#### 10. IconButton
+Tombol berbentuk ikon. Digunakan di AppBar dan daftar admin (edit, hapus, peserta).
+#### 11. FloatingActionButton.extended
+Tombol aksi mengambang dengan ikon dan teks. Digunakan untuk menambah kegiatan di halaman admin.
+#### 12. GestureDetector
+Mendeteksi gesture (tap). Digunakan agar seluruh kartu dapat diklik dan membuka halaman detail.
+#### 13. AlertDialog
+Dialog popup untuk konfirmasi atau informasi. Digunakan saat hapus data dan notifikasi sukses.
+#### 14. SnackBar
+Notifikasi singkat di bagian bawah layar. Digunakan untuk pesan sukses dan error.
+
+### Navigasi
+#### 1. Navigator.push + MaterialPageRoute
+Berpindah ke halaman baru. Digunakan untuk membuka detail, register, form, dan peserta.
+#### 2. Navigator.pop
+Kembali ke halaman sebelumnya. Digunakan setelah submit berhasil atau menutup dialog.
+
+### State Management (Provider)
+#### 1. StatefulWidget + setState()
+Mengelola state lokal dalam satu halaman. Digunakan untuk filter kategori dan status loading.
+#### 2. ChangeNotifierProvider
+Menyediakan state global ke seluruh aplikasi. Digunakan di main.dart untuk mengelola data kegiatan dan peserta.
+
 ## Struktur Project
+<img width="1085" height="534" alt="image" src="https://github.com/user-attachments/assets/0bed2838-2430-4596-8688-5071671d136f" />
+
 ## Dependencies
 ```dart
 dependencies:
