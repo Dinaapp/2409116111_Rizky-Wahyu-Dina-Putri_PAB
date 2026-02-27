@@ -68,7 +68,7 @@ Memotong widget agar memiliki sudut melengkung. Digunakan pada banner kartu dan 
 Progress bar horizontal (0.0–1.0). Digunakan untuk menampilkan jumlah slot peserta yang terisi.
 #### 6. CircularProgressIndicator
 Loading berbentuk lingkaran. Digunakan saat proses submit atau login berlangsung.
-#### 1. Icon
+#### 7. Icon
 Menampilkan ikon Material Design. Digunakan sebagai elemen visual kategori, informasi, dan aksi.
 
 ### Widget Teks & Input
