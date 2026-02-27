@@ -1,7 +1,7 @@
 ### NAMA: Rizky Wahyu Dina Putri
 ### NIM: 2409116111
 
-# ****APLIKASI PENDAFTARAN RELAWAN KEGIATAN SOSIAL SAMARINDA****
+# APLIKASI PENDAFTARAN RELAWAN KEGIATAN SOSIAL SAMARINDA
 ## Deskripsi 
 GoVolunteer adalah aplikasi mobile berbasis Flutter yang dirancang sebagai platform promosi dan manajemen kegiatan sosial di Kota Samarinda. Aplikasi ini menjadi jembatan antara organisasi atau komunitas sosial yang ingin menyelenggarakan kegiatan sukarela dengan masyarakat umum (mahasiswa, warga, dan relawan) yang ingin ikut berkontribusi dalam berbagai kegiatan sosial.
 
