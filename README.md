@@ -3,7 +3,7 @@
 
 # APLIKASI PENDAFTARAN RELAWAN KEGIATAN SOSIAL SAMARINDA
 ## Deskripsi 
-GoVolunteer adalah aplikasi mobile berbasis Flutter yang dirancang sebagai platform promosi dan manajemen kegiatan sosial di Kota Samarinda. Aplikasi ini menjadi jembatan antara organisasi atau komunitas sosial yang ingin menyelenggarakan kegiatan sukarela dengan masyarakat umum (mahasiswa, warga, dan relawan) yang ingin ikut berkontribusi dalam berbagai kegiatan sosial.
+GoVolunteer adalah aplikasi mobile berbasis Flutter yang dirancang sebagai platform promosi dan manajemen kegiatan sosial di Kota Samarinda. Aplikasi ini menjadi jembatan antara organisasi atau komunitas sosial yang ingin menyelenggarakan kegiatan sosial dengan masyarakat umum yang ingin ikut berkontribusi dalam berbagai kegiatan sosial.
 
 Aplikasi ini bertujuan untuk memberikan informasi lengkap mengenai kegiatan yang sedang berlangsung, termasuk lokasi, waktu pelaksanaan, serta manfaat atau benefit yang dapat diperoleh peserta. Selain itu, GoVolunteer memudahkan masyarakat untuk menemukan dan mengikuti kegiatan sosial dengan lebih cepat dan terorganisir.
 ## Fitur
@@ -130,6 +130,7 @@ dependencies:
 
 # CODE
 ## Package Models
+### Activity.dart
 ```dart
 class Activity {
   final String id;
@@ -178,6 +179,28 @@ class Activity {
   }
 }
 ```
+Pada code ini berisi blueprint data setiap kegiatan yang nantinya diisi oleh admin, untuk id dibuat final karena saat membuat kegiatan baru id tidak bisa berubah meski nantinya informasi kegiatan di update. Untuk informasi kegiatan lain seperti judul, tanggal, dll dapat berubah karena tidak menggunakan final.
+
+code ini adalah visualisasi dari jumlah peserta yang dapat mendaftar di kegiatan, contoh saat kegiatan memiliki jumlah maksimal pesertanya 50 dan pendaftar telah mencapai 30, maka di total slot yang tersedia akan menampilkan angka 20. Dan jika sudah mencapai 50 pendaftar maka status pendaftar di kegiatan akan full.
+```dart
+ Activity({
+    required this.id,
+    required this.title,
+    required this.organizer,
+    required this.description,
+    required this.location,
+    required this.date,
+    required this.time,
+    required this.benefits,
+    required this.maxParticipants,
+    this.registeredCount = 0,
+    required this.category,
+  });
+
+  int get availableSlots => maxParticipants - registeredCount;
+  bool get isFull => registeredCount >= maxParticipants;
+```
+### participant.dart
 ```dart
 class Participant {
   final String id;
@@ -199,8 +222,10 @@ class Participant {
   });
 }
 ```
+Pada code ini adalah blueprint dari peserta yang mendaftar di kegiatan, semua field dari data peserta dibuat final karena peserta tidak dapat mengedit lagi data diri yang didaftarkan. Maka dari itu saat mendaftar terdapat validasi saat mengisi form agar mengurangi kesalahan dalam mengisi data.
 
 ## Package Providers
+### app_provider.dart
 ```dart
 import 'package:flutter/foundation.dart';
 import '../models/activity.dart';
@@ -336,6 +361,9 @@ class AppProvider extends ChangeNotifier {
   }
 }
 ```
+Pada bagian ini berisi logic utama aplikasi yang diatur melalui AppProvider dengan ChangeNotifier sebagai state management. Class ini mengelola seluruh data kegiatan dan peserta, termasuk proses tambah, edit, hapus kegiatan, serta pendaftaran peserta. Saat peserta mendaftar, sistem akan mengecek apakah slot masih tersedia. Jika belum penuh, data peserta akan disimpan dan jumlah pendaftar pada kegiatan akan bertambah otomatis. Jika sudah mencapai batas maksimal, maka status kegiatan menjadi penuh dan pendaftaran akan ditutup. Setiap perubahan data akan langsung memperbarui tampilan karena menggunakan notifyListeners().
+## Package Screens
+### Activity_detail_screen.dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -593,7 +621,9 @@ class ActivityDetailScreen extends StatelessWidget {
   }
 }
 ```
-## Package Screens
+code ini menampilkan informasi lengkap mengenai kegiatan seperti judul, penyelenggara, tanggal, lokasi, deskripsi, benefit, serta visualisasi jumlah peserta melalui progress bar. Sistem secara otomatis menghitung sisa slot berdasarkan jumlah maksimal peserta dikurangi jumlah pendaftar. Jika kuota sudah terpenuhi, tombol pendaftaran akan nonaktif dan status kegiatan berubah menjadi "slot penuh".
+
+### activity_form_screen.dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -957,6 +987,9 @@ class _ActivityFormScreenState extends State<ActivityFormScreen> {
   }
 }
 ```
+code ini digunakan untuk menambahkan dan mengedit kegiatan. Form ini sudah dilengkapi validasi input untuk memastikan setiap field terisi dengan benar dan sesuai format, sehingga meminimalkan kesalahan data. Tanggal kegiatan hanya dapat dipilih mulai dari hari ini hingga tiga tahun ke depan. Dengan adanya validasi dan pembatasan ini, data kegiatan yang disimpan tetap konsisten dan terstruktur dengan baik.
+
+### admin_screen.dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -1175,6 +1208,9 @@ class _AdminActivityTile extends StatelessWidget {
   }
 }
 ```
+code ini digunakan sebagai panel pengelolaan kegiatan. Pada halaman ini admin dapat melihat total jumlah kegiatan dan total relawan yang terdaftar, menambahkan kegiatan baru, mengedit kegiatan, melihat daftar peserta pada setiap kegiatan, serta menghapus kegiatan. Jika kegiatan dihapus, maka seluruh data peserta yang terdaftar pada kegiatan tersebut juga akan ikut terhapus.
+
+### home_screen.dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -1390,6 +1426,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 ```
+Code ini berfungsi sebagai halaman utama yang menampilkan seluruh daftar kegiatan yang tersedia. Pengguna dapat memfilter kegiatan berdasarkan kategori seperti Lingkungan, Kesehatan, Pendidikan, dan Sosial. Dari halaman ini, pengguna bisa melihat detail kegiatan atau mendaftar kegiatan.
+
+### participants_screen.dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -1519,6 +1558,9 @@ class ParticipantsScreen extends StatelessWidget {
   }
 }
 ```
+code ini menampilkan daftar peserta yang telah mendaftar pada suatu kegiatan. Di halaman ini admin dapat melihat detail data peserta seperti nama, email, nomor WhatsApp, dan asal instansi, serta memiliki opsi untuk menghapus peserta dari kegiatan. Ketika peserta dihapus, jumlah slot yang tersedia pada kegiatan akan otomatis diperbarui.
+
+### register_screen.dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -1801,6 +1843,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 ```
+pada code ini merupakan form pendaftaran relawan. Form ini dilengkapi dengan validasi input seperti pengecekan format email dan nomor WhatsApp agar sesuai standar, serta memastikan semua field wajib terisi. Jika data valid dan slot masih tersedia, maka pendaftaran akan berhasil dan jumlah peserta pada kegiatan akan bertambah otomatis. Namun jika kuota sudah penuh, sistem akan menampilkan notifikasi bahwa pendaftaran tidak dapat dilakukan.
+
+## Package Widget
+### activity_card.dart
 ```dart
 import 'package:flutter/material.dart';
 import '../models/activity.dart';
@@ -2137,6 +2183,8 @@ class ActivityCard extends StatelessWidget {
   }
 }
 ```
+Code ini merupakan widget yang digunakan untuk menampilkan informasi kegiatan dalambentuk card. Setiap card juga memiliki warna menyesuaikan kategori kegiatan seperti Lingkungan, Kesehatan, Pendidikan, dan Sosial, lengkap dengan ikon kategori, badge status “PENUH” jika kuota sudah habis, serta informasi detail seperti penyelenggara, deskripsi singkat, tanggal, waktu, lokasi, dan sisa slot relawan.
+
 ## MAIN
 ```dart
 import 'package:flutter/material.dart';
@@ -2183,6 +2231,8 @@ class GoVolunteerApp extends StatelessWidget {
   }
 }
 ```
+Code main merupakan code yang menjalankan seluruh code, aplikasi dijalankan menggunakan ChangeNotifierProvider dari Provider untuk mengelola state secara global melalui AppProvider.
+
 # DOKUMENTASI APLIKASI
 1. Tampilan Home yang belum memiliki kegiatan yang tersedia, pada ujung kanan atas ada icon untuk admin panel yang khusus diakses oleh admin. Masih belum ada sistem login untuk user atau pengguna. 
 <img width="1919" height="1122" alt="Cuplikan layar 2026-02-28 124939" src="https://github.com/user-attachments/assets/cd62dc03-3e7d-4d62-9525-58217ed7df85" />
