@@ -2184,5 +2184,28 @@ class GoVolunteerApp extends StatelessWidget {
 }
 ```
 # DOKUMENTASI APLIKASI
-
-
+1. Tampilan Home yang belum memiliki kegiatan yang tersedia, pada ujung kanan atas ada icon untuk admin panel yang khusus diakses oleh admin. Masih belum ada sistem login untuk user atau pengguna. 
+<img width="1919" height="1122" alt="Cuplikan layar 2026-02-28 124939" src="https://github.com/user-attachments/assets/cd62dc03-3e7d-4d62-9525-58217ed7df85" />
+2. Tampilan admin panel, admin dapat melihat statistik dari total kegiatan dan total relawan. Di ujung kanan bawah ada tombol tambah kegiatan untuk menambahkan kegiatan.
+<img width="1917" height="1122" alt="Cuplikan layar 2026-02-28 124957" src="https://github.com/user-attachments/assets/1e45d947-a1d1-418f-976c-746b9d87ea7d" />
+3. Di halaman tambah kegiatan, terdapat beberapa field yang harus diisi oleh admin seperti nama kegiatan, organisasi yang menyelenggarakan, waktu, deskripsinya dll.
+<img width="1915" height="1123" alt="Cuplikan layar 2026-02-28 125214" src="https://github.com/user-attachments/assets/86d9d1d0-f6b4-44dc-b7d0-11d29a101f34" />
+<img width="1918" height="1130" alt="Cuplikan layar 2026-02-28 125225" src="https://github.com/user-attachments/assets/05704324-9b0d-4bd7-b5dc-fc6a2e2228b6" />
+4. Kegiatan berhasil di tambahkan dan statistiknya secara otomatis terupdate berdasarkan kegiatan yang di inputkan.
+<img width="1915" height="1130" alt="Cuplikan layar 2026-02-28 125233" src="https://github.com/user-attachments/assets/2e10510c-e7ff-43da-98be-059cc0b468f6" />
+5. Di halaman home juga langsung terupdate kegiatannya yang dapat dilihat oleh user nantinya, dan di card kegiatannya terdapat keterangan dari kegiatan atau detail, dan pendaftaran.
+<img width="1919" height="1128" alt="Cuplikan layar 2026-02-28 125243" src="https://github.com/user-attachments/assets/d793dead-37e2-4ee5-bfbb-ad8ab82c8900" />
+6. Tampilan dari button detail adalah menampilkan detail dari kegiatan yang sedang berlangsung.
+<img width="1914" height="1123" alt="Cuplikan layar 2026-02-28 125255" src="https://github.com/user-attachments/assets/c06aa690-cda8-4557-a54a-e372de4d6762" />
+7. form pendaftaran memiliki beberapa field seperti nama pendaftar, nomer, email dan asal instansi yang dapat diisi oleh masyakarat yang berasal dari instansi tertentu atau individu. Jika individu bisa mengisi dengan "-".
+<img width="1917" height="1128" alt="Cuplikan layar 2026-02-28 125331" src="https://github.com/user-attachments/assets/4136f7b0-7569-45d7-a536-288139e9cc91" />
+8. Notifikasi pop up saat pendaftar berhasil mendaftar ke kegiatan.
+<img width="1919" height="1130" alt="Cuplikan layar 2026-02-28 125340" src="https://github.com/user-attachments/assets/f6d7879b-9e15-4fd5-96ae-54f13480dd6b" />
+9. Tampilan home yang secara otomatis terupdate untuk jumlah pendaftar, yang sebelumnya 50 menjadi 49. Dan progress bar juga terisi sesuai jumlah pendaftar.
+<img width="1918" height="1128" alt="Cuplikan layar 2026-02-28 125348" src="https://github.com/user-attachments/assets/87cc1de9-e83d-4744-8df4-5ec528b215ec" />
+10. statistik di Admin panel juga terupdate untuk relawan yang mendaftar di kegiatan.
+<img width="1916" height="1126" alt="Cuplikan layar 2026-02-28 125400" src="https://github.com/user-attachments/assets/dc0064fa-8907-4a07-bbf7-4b98a268bbf2" />
+11. Admin dapat melihat detail peserta di kegiatan dan dapat menghapus peserta.
+<img width="1919" height="1123" alt="Cuplikan layar 2026-02-28 125417" src="https://github.com/user-attachments/assets/fffe6957-3251-431b-a3e4-8faeefe2ad5f" />
+12. Admin dapat mengedit informasi kegiatan dan menyimpan perubahannya.
+<img width="1918" height="1120" alt="Cuplikan layar 2026-02-28 125429" src="https://github.com/user-attachments/assets/aa3196d5-770b-4b1a-a8de-ea7f7fc18e7e" />
