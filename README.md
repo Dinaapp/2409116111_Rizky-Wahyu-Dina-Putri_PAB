@@ -2183,7 +2183,7 @@ class ActivityCard extends StatelessWidget {
   }
 }
 ```
-Code ini merupakan widget yang digunakan untuk menampilkan informasi kegiatan dalambentuk card. Setiap card juga memiliki warna menyesuaikan kategori kegiatan seperti Lingkungan, Kesehatan, Pendidikan, dan Sosial, lengkap dengan ikon kategori, badge status “PENUH” jika kuota sudah habis, serta informasi detail seperti penyelenggara, deskripsi singkat, tanggal, waktu, lokasi, dan sisa slot relawan.
+Code ini merupakan widget yang digunakan untuk menampilkan informasi kegiatan dalambentuk card. Setiap card juga memiliki warna menyesuaikan kategori kegiatan seperti Lingkungan, Kesehatan, Pendidikan, dan Sosial, lengkap dengan ikon kategori, badge status "Penuh" jika kuota sudah habis, serta informasi detail seperti penyelenggara, deskripsi singkat, tanggal, waktu, lokasi, dan sisa slot relawan.
 
 ## MAIN
 ```dart
